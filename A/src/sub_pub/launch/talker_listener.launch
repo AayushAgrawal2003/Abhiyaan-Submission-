@@ -1,0 +1,4 @@
+<launch>
+<node name="listener" pkg="sub_pub" type="subscriber.py" output="screen"/>
+<node name="publisher" pkg="sub_pub" type="publisher.py" output="screen"/>
+</launch>
