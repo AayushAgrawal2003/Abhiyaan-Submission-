@@ -37,7 +37,7 @@ while(cap.isOpened()):
         params.maxInertiaRatio = 1
 
         detector = cv2.SimpleBlobDetector_create(params)
-        keypoints = detector.detect(res)
+        keypoints = detector.detect(mask)
         blank = np.zeros((1, 1))
         blobs = cv2.drawKeypoints(res, keypoints, blank, (0, 0, 255),
                                 cv2.DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS)
