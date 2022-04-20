@@ -1,0 +1,4 @@
+rosservice call reset
+rosservice call /kill turtle1
+rosservice call /spawn 5 4 1.5707 one
+rosservice call /spawn 5 6 1.5707 two

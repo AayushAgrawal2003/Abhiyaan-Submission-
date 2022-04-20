@@ -24,10 +24,9 @@ def thresh_callback(val):
             cv.ellipse(drawing, minEllipse[i], color, 2)
 
     #cv.imshow('Contours', drawing)
-    cv.imshow('Contours', canny_output)
     return canny_output
 
-cap = cv.VideoCapture('test2.mp4')
+cap = cv.VideoCapture('test1.mp4')# set video here.
 
 if(cap.isOpened() == False):
     print("Nope")
@@ -44,7 +43,6 @@ while(cap.isOpened()):
         thresh = 230
         cv.createTrackbar('Canny Thresh:', source_window, thresh, max_thresh, thresh_callback)
         sec = thresh_callback(thresh)
-
         #blob detection
         params = cv.SimpleBlobDetector_Params()
         
@@ -64,15 +62,12 @@ while(cap.isOpened()):
 
         detector = cv.SimpleBlobDetector_create(params)
         keypoints = detector.detect(sec)
-        blank = np.zeros((1, 1))
-        blobs = cv.drawKeypoints(src, keypoints, blank, (0, 0, 255),
-                                cv.DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS)
+        blank = np.ones((4,4))
+        blobs = cv.drawKeypoints(src, keypoints, 100, (0, 0, 255),
+                                cv.DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS )
         
-        number_of_blobs = len(keypoints)
-        text = "Number of Circular Blobs: " + str(len(keypoints))
-        cv.putText(blobs, text, (20, 550),cv.FONT_HERSHEY_SIMPLEX, 1, (0, 100, 255), 2)
-        
-        # Show blobs
+
+            
         cv.imshow("Filtering Circular Blobs Only", blobs)
 
 
